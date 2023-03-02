@@ -1,31 +1,31 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Simple Home Page</title>
-    <link rel="stylesheet" type="text/css" href="home.css">
+    <title>Dashboard with Sidebar and Icons</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
   </head>
   <body>
-    <header>
-      <h1>My Website</h1>
+    <div class="wrapper">
       <nav>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Contact</a></li>
+          <li class="active"><a href="#"><i class="fas fa-tachometer-alt"></i></a></li>
+          <li><a href="#"><i class="fas fa-chart-bar"></i></a></li>
+          <li><a href="#"><i class="fas fa-cog"></i></a></li>
         </ul>
       </nav>
-    </header>
-    <main>
-      <section>
-        <h2>Welcome to My Website</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <a href="#" class="button">Learn More</a>
-      </section>
-    </main>
-    <footer>
-      <p>&copy; 2023 My Website</p>
-    </footer>
+      <main>
+        <section>
+          <h2>Dashboard</h2>
+          <p>Welcome to your dashboard.</p>
+          <div class="rectangle-box">
+            <h2>Rectangle Box Example</h2>
+            <p>This is an example of a rectangle box in HTML and CSS.</p>
+          </div>
+        </section>
+      </main>
+    </div>
   </body>
 </html>

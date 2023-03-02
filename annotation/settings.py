@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'annotation.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'balaji_db',
+        'NAME': 'seyali',
         'USER': 'postgres',
         'PASSWORD': 'admin',
         'HOST': '127.0.0.1',

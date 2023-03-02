@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.index),
     path('signpage/', views.signpage),
     path('add_user',views.add_user),
+    path('home',views.home),
     ]
