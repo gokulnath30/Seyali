@@ -14,25 +14,25 @@
 <body>
     <div class="container">
         <h1>Login</h1>
-        <form id="user">
+        <form id="userlogin">
             <div class="txt-in">
-                <label>Email:</label>
-                <input type="email" id="lemail" name="email">
+                <label>User Name:</label>
+                <input type="text" id="username" name="username" required>
             </div>
             <div class="txt-in">
                 <label>password:</label>
-                <input type="password" id="lpass" name="password">
+                <input type="password" id="password" name="password" required>
             </div>
             <div class="pass">Forget password?</div>
             <button type="submit" id="lbutton">login</button>
             <div class="signup-link">
-                Not a member? <a href="/signpage">Signup</a>
+                Not a member? <a href="/signup">Signup</a>
             </div>
         </form>
     </div>
 
 </body>
 <script src="{% static 'js/jquery.min.js' %}"></script>
-<script src="{% static 'js/sign.js' %}"></script>
+<script src="{% static 'js/login.js' %}"></script>
 
 </html>

@@ -1,9 +1,20 @@
 from django.contrib import admin
 from django.urls import path
-from tool import views
+from .views import *
+from .routes import *
+
 urlpatterns = [
-    path('', views.index),
-    path('signpage/', views.signpage),
-    path('add_user',views.add_user),
-    path('home',views.home),
+    # routes 
+    path('', loginpage),
+    path('login', loginpage),
+    path('signup',signup),
+    path('home', home),
+
+    # APIS
+    path('newuser',newuser),
+    path('signin',signin),
+    
+
+    path('upload_dataset',upload_dataset),
+
     ]
