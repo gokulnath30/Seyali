@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form id="user">
+            <div class="txt-in">
+                <label>Email:</label>
+                <input type="email" id="lemail" name="email">
+            </div>
+            <div class="txt-in">
+                <label>password:</label>
+                <input type="password" id="lpass" name="password">
+            </div>
+            <div class="pass">Forget password?</div>
+            <button type="submit" id="lbutton">login</button>
+            <div class="signup-link">
+                Not a member? <a href="/signpage">Signup</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="{% static 'sign.js' %}"></script>
+
+</html>
