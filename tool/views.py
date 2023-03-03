@@ -3,7 +3,7 @@ from django.contrib.auth.models import User,auth
 from django.contrib.auth.hashers import make_password
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import redirect, render
-
+import time
 def newuser(request):
     if request.method == 'POST':
         if len(User.objects.filter(email=request.POST['email'])) == 0:
@@ -26,17 +26,19 @@ def signin(request):
     else:
         return render(request, 'login.html')
             
-   
-def upload_dataset(request):
+
+def create_project(request):
     if request.method == 'POST':
-        pass
-        # pname = request.POST['pname']
-        # owner_name = request.POST['owner']
-        # for im in  request.FILES.getlist("images"):
-        #     img = FileSystemStorage()
-        #     weightsname = img.save('tool/static/upload/' + im.name, img)
-        #     print(img.url(weightsname),im)
+        project_name = request.POST['project_name']
+        classes = request.POST['classes']
+        # imag_path = request.POST['imag_path']
+        members = request.POST['members']
+        for im in  request.FILES.getlist("imag_path"):
+            img = FileSystemStorage()
+            img_path = 'tool/static/upload/'+project_name+'/'+ str(time.time())+'.png'
+            weightsname = img.save(img_path, img)
+            print(img.url(weightsname),img_path,'=======')
+        # Project.objects.create(project_name = project_name, classes=classes, imag_path=imag_path, members=members)
         return JsonResponse({"res":"success"})
     else:
-        return JsonResponse({"res":"faild"})
-            
+        return JsonResponse({"res":"faild"})            
