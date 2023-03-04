@@ -14,8 +14,11 @@ urlpatterns = [
     path('login', loginpage),
     path('signup',signup),
     path('home', home),
-    path('annotate_page',annotate_page),
+    # path('annotate_page',annotate_page),
     path('annotation',annotation),
+    path('annotate_page/<str:p_name>',annotate_page),
+    path('layout',layout),
+
 
 
     # APIS
@@ -25,6 +28,7 @@ urlpatterns = [
     path('add_users',users),
     path('get_images',get_images),
     path('start_magic',start_magic),
+    path('assign_user',assign_user),
 
     path('create_project',create_project),
 

@@ -53,3 +53,13 @@ def users(request):
 
 
 # if os.path.isfile('tool/static/uploads/' + project_name + '/'): 
+def assign_user(request):
+    if request.method == 'POST':
+        user = request.POST['user']
+        imgCount = request.POST['imgCount']
+        members.objects.create(user=user, imgCount=imgCount,Project_id=request.POST['project_name'])
+        return JsonResponse({"res":"success"})
+    else:
+        return JsonResponse({"res":"failed"})
+
+

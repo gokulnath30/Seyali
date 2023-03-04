@@ -72,6 +72,7 @@ function endRect(e) {
     context.strokeRect(x1,x2,y1,y2);
     if(y1 != 0 && y2 != 0){
         console.log(x1,x2,y1,y2,'::::::::')
+        
         annotations['checker'][$("#imag_name").html()].push({'class1':[x1,x2,y1,y2]})
 
     }
