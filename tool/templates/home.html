@@ -1,5 +1,5 @@
-{% load static %}
-<!doctype html>
+{%load static%}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,87 +10,57 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Seyali</title>
+  <title></title>
 
   <!-- Custom fonts for this template-->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet"
-    type="text/css">
-  <!-- <link
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet"> -->
+    rel="stylesheet"> 
 
   <!-- Custom styles for this template-->
-  <link href="{%static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
-  <link rel="stylesheet" href="{%static 'css/home.css' %}">
+  <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
 
 </head>
 
-<body id="page-top" data-new-gr-c-s-check-loaded="14.1098.0" data-gr-ext-installed="" cz-shortcut-listen="true">
+<style>
+  .side_toggle {
+    top: 500px;
+    position: sticky !important;
+  }
+
+  @media (min-width: 768px) {
+    .sidebar.toggled .nav-item .nav-link span {
+      font-size: .65rem;
+      display: none;
+    }
+  }
+</style>
+
+<body id="page-top">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Seyali</div>
+        <div class="sidebar-brand-text mx-3"></div>
       </a>
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="index.html">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>projects</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-          aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Components</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="cards.html">Cards</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-          aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
-            <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
-          </div>
-        </div>
+          <i class="fas fa-fw fa-tachometer-alt" style="font-size: 1.5rem"></i>
+          <span style="font-size: 1rem">Dashboard</span></a>
       </li>
 
       <!-- Divider -->
@@ -101,50 +71,10 @@
         Addons
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-          aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="login.html">Login</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
-
       <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
+      <div class="text-center d-none d-md-inline side_toggle">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
-
-
 
     </ul>
     <!-- End of Sidebar -->
@@ -163,7 +93,18 @@
             <i class="fa fa-bars"></i>
           </button>
 
-
+          <!-- Topbar Search -->
+          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <div class="input-group">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                aria-label="Search" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -344,74 +285,90 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Project</h1>
+          <div class="d-flex justify-content-between">
+            <div class="d-sm-flex align-items-center justify-content-between">
+              <h1 class="h1 text-gray-800">Projects</h1>
+            </div>
 
-            <div id="project_details"></div>
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-              data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
               Create project
             </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create Project</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <form id="data_upload" enctype="multipart/form-data">
+
+                    <div class="modal-body">
+
+                      <div class="form-group">
+                        <label for="pname">Project Name</label>
+                        <input type="text" class="form-control" name="project_name" id="pname" placeholder="Seyali">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="pname">Classes</label>
+                        <input type="text" class="form-control" name="classes" id="classes" placeholder="Cat">
+                      </div>
+
+
+                      <div class="form-group">
+                        <label for="pname">Add Members</label>
+                        <input type="text" class="form-control" name="members" id="members"
+                          placeholder="gokul@gmail.com">
+                      </div>
+
+
+                      <div class="form-group">
+                        <label for="images">Select files to upload:</label>
+                        <input type="file" class="form-control" name="imag_path" id="image_path" multiple>
+                        <!-- <div class="custom-file">
+                      <input type="file" class="form-control" name="imag_path" id="images" multiple>
+                      <label class="custom-file-label" for="file-upload">Choose files</label>
+                    </div> -->
+                      </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+
+
+                  </form>
+
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal end  -->
           </div>
 
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Create Project</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="data_upload" enctype="multipart/form-data">
+          <!-- Cards  -->
 
-                  <div class="modal-body">
-
-                    <div class="form-group">
-                      <label for="pname">Project Name</label>
-                      <input type="text" class="form-control" name="project_name" id="pname" placeholder="Seyali">
-                    </div>
-
-                    <div class="form-group">
-                      <label for="pname">Classes</label>
-                      <input type="text" class="form-control" name="classes" id="classes" placeholder="Cat">
-                    </div>
-
-
-                    <div class="form-group">
-                      <label for="pname">Add Members</label>
-                      <input type="text" class="form-control" name="members" id="members" placeholder="gokul@gmail.com">
-                    </div>
-
-
-                    <div class="form-group">
-                      <label for="images">Select files to upload:</label>
-                      <input type="file" class="form-control" name="imag_path" id="image_path" multiple>
-                      <!-- <div class="custom-file">
-                        <input type="file" class="form-control" name="imag_path" id="images" multiple>
-                        <label class="custom-file-label" for="file-upload">Choose files</label>
-                      </div> -->
-                    </div>
-
-
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                  </div>
-
-
-                </form>
-
-
-              </div>
+          <div id="project_details" class="mt-2 d-sm-flex align-items-center justify-content-between">
+            <div class="row mt-3">
             </div>
           </div>
 
+
+
         </div>
         <!-- /.container-fluid -->
+
+
+
+
+
+
 
       </div>
       <!-- End of Main Content -->
@@ -420,7 +377,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright © Seyali 2023</span>
+            <span>Copyright &copy; Your Website 2020</span>
           </div>
         </div>
       </footer>
@@ -433,7 +390,7 @@
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top" style="display: none;">
+  <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
 
@@ -459,9 +416,14 @@
 
   <!-- Bootstrap core JavaScript-->
   <script src="{% static 'js/jquery.min.js' %}"></script>
-  <script src="{% static 'js/bootstrap.bundle.min.js' %} "></script>
-  <script src="{% static 'js/sb-admin-2.min.js' %} "></script>
-  <script src="{% static 'js/home.js' %} "></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <!-- <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
+
+  <!-- Custom scripts for all pages-->
+  <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+  <script src="{% static 'js/home.js' %}"></script>
 
 </body>
 

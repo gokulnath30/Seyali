@@ -15,3 +15,4 @@ def home(request):
 def annotate_page(request):
     return render(request, ('annotate.html'))
 
+

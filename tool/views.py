@@ -1,11 +1,7 @@
 from django.http.response import JsonResponse
-from django.contrib.auth.models import User,auth
-from django.contrib.auth.hashers import make_password
 from django.core.files.storage import FileSystemStorage
-from django.shortcuts import redirect, render
 import time
 from django.core.files.storage import FileSystemStorage
-import os
 from django.db import connection
 from .models import *
 
@@ -17,48 +13,24 @@ def custom_sql(query):
     connection.close()
     return row
 
-def newuser(request):
-    if request.method == 'POST':
-        if len(User.objects.filter(email=request.POST['email'])) == 0:
-            User.objects.create(username = request.POST['username'],email=request.POST['email'],password=make_password(request.POST['password']))
-            return JsonResponse({"res":"success"})
-        else:
-            return JsonResponse({"res":"User already Exixt"})
-    else:
-        return JsonResponse({"res":"faild"})
-    
-
-def signin(request):
-    if request.method == 'POST':
-        user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
-        if user is not None:
-            auth.login(request, user)
-            return JsonResponse({'res':'sucess'})
-        else:
-            return JsonResponse({'res':'Invalide user name or password'})
-    else:
-        return render(request, 'login.html')
-            
 
 def create_project(request):
     if request.method == 'POST':
         project_name = request.POST['project_name']
-        classes = request.POST['classes']
-        members = request.POST['members']
-        data = Project.objects.filter(project_name=project_name) 
-        
-        for im in request.FILES.getlist('imag_path'):
-            img = FileSystemStorage()
-            img_dir = 'tool/static/upload/' + project_name
-            if not os.path.exists(img_dir):
-                os.makedirs(img_dir)
-                
-            img_path = img_dir + '/' + str(time.time()) + '.png'
-            weightsname = img.save(img_path, im)
-            # print(img.url(weightsname), img_path, '=======')  
-            if len(data) == 0:
-                Project.objects.create(project_name=project_name, classes=classes, members=[members])         
+        if  len(Project.objects.filter(project_name=project_name)) == 0:
+            imgs = []
+            for im in request.FILES.getlist('imag_path'):
+                img = FileSystemStorage()
+                img_path = 'tool/static/uploads/' + project_name + '/'
+                img_name = str(time.time()) + '.png'
+                img.save(img_path+img_name, im)
+                imgs.append('static/uploads/tests/'+project_name+'/'+img_name)
+
+            Project.objects.create(project_name=project_name, classes=request.POST['classes'], members=request.POST['members'],imag_path= imgs,owner_name = request.user)         
+
             return JsonResponse({'res': 'success'})
+        else:
+             return JsonResponse({'res': 'proejct already exist'})
 
     else:
         return JsonResponse({'res': 'failed'})
