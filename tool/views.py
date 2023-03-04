@@ -1,9 +1,9 @@
 from django.http.response import JsonResponse
 from django.core.files.storage import FileSystemStorage
-import time
 from django.core.files.storage import FileSystemStorage
 from django.db import connection
 from .models import *
+import uuid,os
 
 def custom_sql(query):
     cursor = connection.cursor()
@@ -22,9 +22,9 @@ def create_project(request):
             for im in request.FILES.getlist('imag_path'):
                 img = FileSystemStorage()
                 img_path = 'tool/static/uploads/' + project_name + '/'
-                img_name = str(time.time()) + '.png'
+                img_name = str(uuid.uuid4()).split("-")[-1]+ '.png'
                 img.save(img_path+img_name, im)
-                imgs.append('static/uploads/tests/'+project_name+'/'+img_name)
+                imgs.append('static/uploads/'+project_name+'/'+img_name)
 
             Project.objects.create(project_name=project_name, classes=request.POST['classes'], members=request.POST['members'],imag_path= imgs,owner_name = request.user)         
 
@@ -52,4 +52,4 @@ def users(request):
         return JsonResponse({"api": api})
 
 
-        
+# if os.path.isfile('tool/static/uploads/' + project_name + '/'): 

@@ -20,6 +20,8 @@
 
   <!-- Custom styles for this template-->
   <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/annotation.css' %}" rel="stylesheet">
+
 
 </head>
 
@@ -43,7 +45,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -60,16 +62,11 @@
       <li class="nav-item">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt" style="font-size: 1.5rem"></i>
-          <span style="font-size: 1rem">Dashboard</span></a>
+          <span style="font-size: 1rem">Annotation</span></a>
       </li>
 
-      <!-- Divider -->
-      <hr class="sidebar-divider">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Addons
-      </div>
+   
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline side_toggle">
@@ -99,7 +96,7 @@
               <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                 aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
+                <button class="btn btn-primary" type="button" >
                   <i class="fas fa-search fa-sm"></i>
                 </button>
               </div>
@@ -284,81 +281,26 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <div class="d-flex justify-content-between">
-            <div class="d-sm-flex align-items-center justify-content-between">
-              <h1 class="h1 text-gray-800">Projects</h1>
+            <div class="canvas-container">
+                <img id="showImg" src="static/images/sample.png" alt="Image" class="canvas-image" width="650" height="650">
+                <canvas id="myCanvas" width="650" height="650"></canvas>
             </div>
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-              Create project
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create Project</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <form id="data_upload" enctype="multipart/form-data">
 
-                    <div class="modal-body">
-
-                      <div class="form-group">
-                        <label for="pname">Project Name</label>
-                        <input type="text" class="form-control" name="project_name" id="pname" placeholder="Seyali">
-                      </div>
-
-                      <div class="form-group">
-                        <label for="pname">Classes</label>
-                        <input type="text" class="form-control" name="classes" id="classes" placeholder="Cat">
-                      </div>
-
-
-                      <div class="form-group">
-                        <label for="pname">Add Members</label>
-                        <input type="text" class="form-control" name="members" id="members"
-                          placeholder="gokul@gmail.com">
-                      </div>
-
-
-                      <div class="form-group">
-                        <label for="images">Select files to upload:</label>
-                        <input type="file" class="form-control" name="imag_path" id="image_path" multiple>
-                        <!-- <div class="custom-file">
-                      <input type="file" class="form-control" name="imag_path" id="images" multiple>
-                      <label class="custom-file-label" for="file-upload">Choose files</label>
-                    </div> -->
-                      </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-
-
-                  </form>
-
-
+            <div class="row">
+                <div class="col-3">
+                    <button class="btn btn-primary" onclick="moveBackward()"><</button>
                 </div>
-              </div>
+                <div class="col-3">
+                    <p id="imag_name"></p>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-primary" onclick="moveForward()">></button>
+                </div>
+                
             </div>
 
-            <!-- Modal end  -->
-          </div>
-
-          <!-- Cards  -->
-
-          <div id="project_details" class="mt-2 d-sm-flex align-items-center justify-content-between">
-            <div class="row mt-3">
-            </div>
-          </div>
-
-
+            <button class="btn btn-success text-center" onclick="startMagic()">Magic</button>
 
         </div>
         <!-- /.container-fluid -->
@@ -422,7 +364,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
-  <script src="{% static 'js/home.js' %}"></script>
+  <script src="{% static 'js/annotation.js' %}"></script>
 
 </body>
 

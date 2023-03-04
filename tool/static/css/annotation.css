@@ -1,0 +1,38 @@
+/* html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} */
+
+
+
+.canvas-container {
+    cursor: crosshair;
+    position: relative;
+    border: 2px solid black;
+    height: 650px;
+    width: 650px;
+
+  }
+  
+  #myCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+  
+  .canvas-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+  

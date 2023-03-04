@@ -15,4 +15,7 @@ def home(request):
 def annotate_page(request):
     return render(request, ('annotate.html'))
 
+@login_required(login_url='/login')
+def annotation(request):
+    return render(request, ('annotation.html'))
 
