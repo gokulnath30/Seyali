@@ -15,12 +15,13 @@
   <!-- Custom fonts for this template-->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet"
     type="text/css">
-  <link
+  <!-- <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
+    rel="stylesheet"> -->
 
   <!-- Custom styles for this template-->
   <link href="{%static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{%static 'css/home.css' %}">
 
 </head>
 
@@ -47,7 +48,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="index.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>projects</span></a>
       </li>
 
       <!-- Divider -->
@@ -207,7 +208,7 @@
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
                     <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
+                      <i class="fas fa-file-alt text-dark"></i>
                     </div>
                   </div>
                   <div>
@@ -218,7 +219,7 @@
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
                     <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
+                      <i class="fas fa-donate text-dark"></i>
                     </div>
                   </div>
                   <div>
@@ -229,7 +230,7 @@
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
                     <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
+                      <i class="fas fa-exclamation-triangle text-dark"></i>
                     </div>
                   </div>
                   <div>
@@ -257,7 +258,7 @@
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                    <!-- <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="..."> -->
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div class="font-weight-bold">
@@ -268,7 +269,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                    <!-- <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="..."> -->
                     <div class="status-indicator"></div>
                   </div>
                   <div>
@@ -279,7 +280,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                    <!-- <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="..."> -->
                     <div class="status-indicator bg-warning"></div>
                   </div>
                   <div>
@@ -310,7 +311,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                <!-- <img class="img-profile rounded-circle" src="img/undraw_profile.svg"> -->
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -344,19 +345,16 @@
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800">Project</h1>
+
+            <div id="project_details"></div>
 
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-primary d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
               data-bs-toggle="modal" data-bs-target="#exampleModal">
               Create project
             </button>
-
-
           </div>
-
-
-
 
           <!-- Modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -373,21 +371,28 @@
 
                     <div class="form-group">
                       <label for="pname">Project Name</label>
-                      <input type="text" class="form-control" name="pname" id="pname">
+                      <input type="text" class="form-control" name="project_name" id="pname" placeholder="Seyali">
                     </div>
 
                     <div class="form-group">
+                      <label for="pname">Classes</label>
+                      <input type="text" class="form-control" name="classes" id="classes" placeholder="Cat">
+                    </div>
+
+
+                    <div class="form-group">
                       <label for="pname">Add Members</label>
-                      <input type="text" class="form-control" name="Members" id="Members">
+                      <input type="text" class="form-control" name="members" id="members" placeholder="gokul@gmail.com">
                     </div>
 
 
                     <div class="form-group">
                       <label for="images">Select files to upload:</label>
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="images" id="images" multiple>
+                      <input type="file" class="form-control" name="imag_path" id="image_path" multiple>
+                      <!-- <div class="custom-file">
+                        <input type="file" class="form-control" name="imag_path" id="images" multiple>
                         <label class="custom-file-label" for="file-upload">Choose files</label>
-                      </div>
+                      </div> -->
                     </div>
 
 
@@ -404,13 +409,6 @@
               </div>
             </div>
           </div>
-
-
-
-
-
-
-
 
         </div>
         <!-- /.container-fluid -->
@@ -462,9 +460,8 @@
   <!-- Bootstrap core JavaScript-->
   <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="{% static 'js/bootstrap.bundle.min.js' %} "></script>
-
-  <script src="{% static 'js/home.js' %} "></script>
   <script src="{% static 'js/sb-admin-2.min.js' %} "></script>
+  <script src="{% static 'js/home.js' %} "></script>
 
 </body>
 

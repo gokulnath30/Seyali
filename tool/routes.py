@@ -11,3 +11,7 @@ def signup(request):
 def home(request):
     return render(request, ('home.html'))
 
+@login_required(login_url='/login')
+def annotate_page(request):
+    return render(request, ('annotate.html'))
+

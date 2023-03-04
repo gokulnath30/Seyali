@@ -13,6 +13,9 @@ urlpatterns = [
     # APIS
     path('newuser',newuser),
     path('signin',signin),
+    path('project_details',project_details),
+    path('annotate_page',annotate_page),
+    path('add_users',users),
     
 
     path('create_project',create_project),
