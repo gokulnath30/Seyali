@@ -1,7 +1,7 @@
 # Seyali is 4X Faster Image annotaion tool 
 
 ## Installation 
- * baasic python installation
+ * basic python installation
  * pip install -r requirements
 
 ## Run Application
