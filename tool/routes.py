@@ -19,6 +19,11 @@ def home(request):
 def layout(request):
     return render(request, ('layout.html'))
 
+
+@login_required(login_url='/login')
+def annotation(request):
+    return render(request, ('annotation.html'))
+
 @login_required(login_url='/login')
 # def annotate_page(request,p_name):
 #     pname = Project.objects.filter(project_name = p_name)
@@ -34,7 +39,4 @@ def annotate_page(request, p_name):
         return render(request, 'annotate.html', {'api': api})
         
 
-@login_required(login_url='/login')
-def annotation(request):
-    return render(request, ('annotation.html'))
 

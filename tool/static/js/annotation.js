@@ -1,132 +1,100 @@
-const canvas = document.getElementById("myCanvas");
-const context = canvas.getContext("2d");
+// Get the canvas element
+const canvas = document.getElementById('myCanvas');
 
-const annotations = {'checker':{}}
+// Get the 2D context of the canvas
+const ctx = canvas.getContext('2d');
 
-const height = 650;
-const width = 650;
+// Create a new image element and set its source
+const img = new Image();
+img.src = 'static/images/sample.png';
 
-// resize canvas (CSS does scale it up or down)
-canvas.height = height;
-canvas.width = width;
+// Define variables to keep track of the mouse position and rectangle coordinates
+let mouseX, mouseY;
+let rectX, rectY, rectWidth, rectHeight;
+let isDragging = false;
 
-context.strokeStyle = "red";
-context.fillStyle = "red";
+// When the image has loaded, draw it on the canvas
+img.onload = function() {
+  // Draw the image on the canvas
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
+  // Add event listeners to the canvas
+  canvas.addEventListener('mousedown', handleMouseDown);
+  canvas.addEventListener('mousemove', handleMouseMove);
+  canvas.addEventListener('mouseup', handleMouseUp);
+};
 
-// implement drawing
-let drawing = false;
+function handleMouseDown(e) {
+  // Get the mouse position relative to the canvas
+  const rect = canvas.getBoundingClientRect();
+  mouseX = e.clientX - rect.left;
+  mouseY = e.clientY - rect.top;
 
-
-function startDrawing(e) {
-    drawing = true;
-    context.beginPath();
-    draw(e);
+  // Start drawing the rectangle
+  rectX = mouseX;
+  rectY = mouseY;
+  rectWidth = 0;
+  rectHeight = 0;
+  isDragging = true;
 }
 
-function endDrawing(e) {
-  drawing = false;
+function handleMouseMove(e) {
+  if (isDragging) {
+    // Get the mouse position relative to the canvas
+    const rect = canvas.getBoundingClientRect();
+    const mouseX2 = e.clientX - rect.left;
+    const mouseY2 = e.clientY - rect.top;
+
+    // Calculate the rectangle coordinates and dimensions
+    rectX = Math.min(mouseX, mouseX2);
+    rectY = Math.min(mouseY, mouseY2);
+    rectWidth = Math.abs(mouseX - mouseX2);
+    rectHeight = Math.abs(mouseY - mouseY2);
+
+    // Redraw the image and all rectangles
+    draw();
+  }
 }
 
-// window.addEventListener("mouseup", endDrawing);
+function handleMouseUp(e) {
+  if (isDragging) {
+    // Stop drawing the rectangle
+    isDragging = false;
 
-function getMousePos(canvas, evt) {
-  var rect = canvas.getBoundingClientRect(),
-    scaleX = canvas.width / rect.width,
-    scaleY = canvas.height / rect.height;
+    // Add the rectangle to the array of rectangles
+    rectangles.push({
+      x: rectX,
+      y: rectY,
+      width: rectWidth,
+      height: rectHeight
+    });
 
-  return {
-    x: (evt.clientX - rect.left) * scaleX,
-    y: (evt.clientY - rect.top) * scaleY,
-  };
+    // Redraw the image and all rectangles
+    draw();
+  }
+  // console.log(rectangles)
 }
 
-function draw(e) {
-  if (!drawing) return;
+function draw() {
+  // Clear the canvas
+  ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
-  let { x, y } = getMousePos(canvas, e);
-  context.lineTo(x, y);
-  context.stroke();
-}
+  // Draw the image on the canvas
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-// window.addEventListener("mousemove", draw);
+  // Draw all rectangles
+  ctx.fillStyle = 'blue';
+  for (let i = 0; i < rectangles.length; i++) {
+    ctx.strokeRect(rectangles[i].x, rectangles[i].y, rectangles[i].width, rectangles[i].height);
+  }
 
-context.lineWidth = 3;
-context.lineCap = "round";
-
-// implement drawing rectangle
-let start = {}
-
-function startRect(e) {
-    start = getMousePos(canvas, e);
-}
-
-window.addEventListener("mousedown", startRect);
-
-function endRect(e) {
-    let { x, y } = getMousePos(canvas, e);
-    let x1 = Math.round(start.x);
-    let x2 = Math.round(start.y)
-    let y1 = Math.round(x - start.x);
-    let y2 = Math.round(y - start.y);
-    context.strokeRect(x1,x2,y1,y2);
-    if(y1 != 0 && y2 != 0){
-        console.log(x1,x2,y1,y2,'::::::::')
-        
-        annotations['checker'][$("#imag_name").html()].push({'class1':[x1,x2,y1,y2]})
-
-    }
-
-
-
-}
-
-
-window.addEventListener("mouseup", endRect);
-
-var totalImages = 0;
-var currentImage = 0;
-var imgList = undefined;
-
-
-const startMagic = () =>{
-    console.log(annotations,'::::::>>>')
-    $.post('start_magic',{'req':JSON.stringify(annotations)},function(res){
-        console.log(res,'====')
-    })
-}
-
-const showImg = ()=>{
-    $.get('get_images',{'inx':currentImage},function(res){
-        totalImages = res['img_len']
-        var imname = res['img_name']
-        $("#showImg").attr("src",res['img_path']);
-        $("#imag_name").html(imname);
-        
-        annotations[res['pname']][imname] = []
-    })
-
-    console.log(annotations,'....')
-
-}
-
-const moveForward = ()=>{
-    if(currentImage < totalImages)
-        currentImage += 1
-    else
-        currentImage = totalImages
-
-        showImg()
-}
-
-const moveBackward = ()=>{
-    if (currentImage >= 1)
-        currentImage -= 1
-    else
-        currentImage = 0
-
-        showImg()
+  // Draw the current rectangle
+  if (isDragging) {
     
+    console.log(rectX, rectY, parseInt(rectX+rectWidth), parseInt(rectY+rectHeight),':::::::::::')
+    ctx.strokeRect(rectX, rectY, rectWidth, rectHeight);
+  }
 }
 
-showImg()
+// Define an array to store all rectangles
+const rectangles = [];

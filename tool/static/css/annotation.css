@@ -15,15 +15,10 @@ body {
 
 .canvas-container {
     cursor: crosshair;
-    position: relative;
-    border: 2px solid black;
-    height: 650px;
-    width: 650px;
-
+   
   }
   
   #myCanvas {
-    position: absolute;
     top: 0;
     left: 0;
     z-index: 2;
@@ -34,5 +29,6 @@ body {
     top: 0;
     left: 0;
     z-index: 1;
+    border-radius: 10px;
   }
   

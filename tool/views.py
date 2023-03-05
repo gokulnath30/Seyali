@@ -35,21 +35,21 @@ def create_project(request):
     else:
         return JsonResponse({'res': 'failed'})
 
+        
+
 
 def project_details(request):
     if request.method == 'GET':
         api = []
-        for x in custom_sql("SELECT * from tool_project"):
-            api.append(x)
+        for x in Project.objects.all():
+            if eval(x.imag_path):
+                sample = eval(x.imag_path)[0]
+            else:
+                sample = 'static/images/download.png'
+            api.append({'project':x.project_name,'count':len(eval(x.imag_path)),'sample':sample})
         return JsonResponse({"api": api})
 
 
-def users(request):
-    if request.method == 'GET':
-        api = []
-        for x in custom_sql("SELECT DISTINCT members from tool_project"):
-            api.append(x)
-        return JsonResponse({"api": api})
 
 
 # if os.path.isfile('tool/static/uploads/' + project_name + '/'): 
@@ -57,8 +57,16 @@ def assign_user(request):
     if request.method == 'POST':
         user = request.POST['user']
         imgCount = request.POST['imgCount']
-        members.objects.create(user=user, imgCount=imgCount,Project_id=request.POST['project_name'])
+        pro = Project.objects.filter(project_name=request.POST['project_name'])
+        assgin = eval(pro[0].imag_path)[0:int(imgCount)]
+        updated_rows = members.objects.filter(user=user).update(imgCount=imgCount,imag_path = assgin)
+        if not updated_rows:
+           members.objects.create(user=user, imgCount=imgCount,imag_path = assgin)
+        
+        balance = eval(pro[0].imag_path)[int(imgCount):len(pro[0].imag_path)]
+        Project.objects.update(imag_path = balance)
         return JsonResponse({"res":"success"})
+       
     else:
         return JsonResponse({"res":"failed"})
 

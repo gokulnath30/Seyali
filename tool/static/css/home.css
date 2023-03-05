@@ -7,14 +7,15 @@ body {
 .wrapper {
   display: flex;
 }
-
+/* 
 nav {
   background-color: #333;
   color: #fff;
   width: 50px;
   height: 100vh;
   padding: 20px;
-}
+} */
+
 
 nav ul {
   margin: 0;
