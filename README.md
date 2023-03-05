@@ -1,4 +1,4 @@
-# Seyali
+# Seyali is 4X Faster annotaion tool 
 
 ## Installation 
  * baasic python installation
