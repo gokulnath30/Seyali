@@ -1,24 +1,21 @@
-// Get the canvas element
 const canvas = document.getElementById('myCanvas');
-
-// Get the 2D context of the canvas
+const annotations = {}
 const ctx = canvas.getContext('2d');
 
-// Create a new image element and set its source
-const img = new Image();
-img.src = 'static/images/sample.png';
+const height = 650;
+const width = 650;
 
-// Define variables to keep track of the mouse position and rectangle coordinates
+canvas.height = height;
+canvas.width = width;
+
+const rectangles = []
 let mouseX, mouseY;
 let rectX, rectY, rectWidth, rectHeight;
 let isDragging = false;
+const img = new Image();
 
-// When the image has loaded, draw it on the canvas
-img.onload = function() {
-  // Draw the image on the canvas
+img.onload = function () {
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-  // Add event listeners to the canvas
   canvas.addEventListener('mousedown', handleMouseDown);
   canvas.addEventListener('mousemove', handleMouseMove);
   canvas.addEventListener('mouseup', handleMouseUp);
@@ -72,7 +69,9 @@ function handleMouseUp(e) {
     // Redraw the image and all rectangles
     draw();
   }
-  // console.log(rectangles)
+  var iname = $("#img_names").html();
+  annotations[iname].push({'cls': [parseInt(rectX), parseInt(rectY), parseInt(rectX + rectWidth), parseInt(rectY + rectHeight)]  })
+
 }
 
 function draw() {
@@ -90,11 +89,43 @@ function draw() {
 
   // Draw the current rectangle
   if (isDragging) {
-    
-    console.log(rectX, rectY, parseInt(rectX+rectWidth), parseInt(rectY+rectHeight),':::::::::::')
     ctx.strokeRect(rectX, rectY, rectWidth, rectHeight);
+    ctx.strokeStyle = "#FF0000";
+
   }
 }
 
-// Define an array to store all rectangles
-const rectangles = [];
+
+$.get('get_images', function (res) {
+  // annotations['project'] = res['pname'];
+  // annotations['ann'] = {}
+  $("#pro_names").html(res['pname']);
+
+  for (let i = 0; i < res['images'].length; i++) {
+    let ilist = res['images'][i].split('/')
+    var iname = ilist[ilist.length - 1]
+
+
+    if (i == 0) {
+      $("#img_names").html(iname);
+      img.src = res['images'][i]
+    }
+    $("#showImg").append(`<img style="cursor: pointer;" onclick="show_img('${iname}','${res['images'][i]}')" src="${res['images'][i]}" class="img-fluid pt-1" alt="placeholder">`)
+
+    annotations[iname] = []
+
+  }
+
+  console.log(annotations)
+})
+
+const show_img = (iname, ipath) => {
+  img.src = ipath
+  console.log(iname)
+}
+
+const start_magic = () => {
+  $.post('start_magic',{'req':JSON.stringify(annotations)},function(res){
+    console.log(res,'====')
+})
+}

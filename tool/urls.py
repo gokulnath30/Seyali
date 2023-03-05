@@ -16,7 +16,6 @@ urlpatterns = [
     path('home', home),
     path('annotate_page/<str:p_name>',annotate_page),
     path('layout',layout),
-    path('preview',preview),
     # path('annotate_page',annotate_page),
     path('annotation',annotation),
 

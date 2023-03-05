@@ -13,10 +13,12 @@ $('#data_upload').on('submit', function (event) {
     success: function (res) {
       if (res['res'] == 'success') {
         alert('Project created')
+        $('#data_upload').trigger('reset')
         $('#exampleModal').modal('toggle');
-
-
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
         get_project();
+
       } else {
         alert('Project not created')
       }
@@ -26,13 +28,13 @@ $('#data_upload').on('submit', function (event) {
   return false;
 
 })
-const get_project = ()=>{
-  
-$.get('project_details', function (res) {
-  var ele = ''
-  for (var i = 0; i < res['api'].length; i++) {
-   
-    ele += ` <div class="col-xl-4 col-md-6 mb-4">
+const get_project = () => {
+
+  $.get('project_details', function (res) {
+    var ele = ''
+    for (var i = 0; i < res['api'].length; i++) {
+
+      ele += ` <div class="col-xl-4 col-md-6 mb-4">
               <div class="card border-left-primary shadow h-100 py-2">
               <div class="card-body">
               <a href = "annotate_page/${res['api'][i]['project']}" style="text-decoration:none"><div class="row no-gutters align-items-center">
@@ -50,11 +52,11 @@ $.get('project_details', function (res) {
           </div>
         </div>`
 
-  }
+    }
 
-  $('#project_details').html(ele)
+    $('#project_details').html(ele)
 
-})
+  })
 }
 
 get_project()

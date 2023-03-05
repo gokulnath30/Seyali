@@ -2,18 +2,25 @@
 {%load static%}
 
 {%block content%}
-<div class="container-fluid d-flex justify-content-center">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-2">
+    <div class="col-1" style="width:300px;overflow-y: scroll;overflow: hidden; " id="showImg">
+
 
     </div>
-    <div class="col-10">
-
-      <div>
-        <canvas id="myCanvas" style="cursor: crosshair;"></canvas>
+    <div class="col-9">
+      <div class="canvas-container">
+        <canvas id="myCanvas" style="cursor: crosshair;margin: auto;"></canvas>
       </div>
 
 
+    </div>
+
+    <div class="col-1">
+      <button class="btn btn-success" onclick="start_magic()">Magic</button>
+      <h1>lable</h1>
+      <P id="img_names"></P>
+      <P id="pro_names"></P>
     </div>
 
 
@@ -24,6 +31,40 @@
 
   </div>
 
+
+  <!-- <style>
+    #zoom-container {
+      width: 500px;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    #zoom-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  </style>
+  <div id="zoom-container">
+    <img  src="/static/images/sample.png" alt="Image">
+  </div>
+
+  <button onclick="zoomIn()">Zoom In</button>
+  <button onclick="zoomOut()">Zoom Out</button>
+  <script>
+    // Set initial zoom level
+    let zoomLevel = 1;
+
+    function zoomIn() {
+      zoomLevel += 0.1;
+      document.getElementById("zoom-container").style.transform = `scale(${zoomLevel})`;
+    }
+
+    function zoomOut() {
+      zoomLevel -= 0.1;
+      document.getElementById("zoom-container").style.transform = `scale(${zoomLevel})`;
+    }
+  </script> -->
 
 
   <!-- <div class="row mt-3">

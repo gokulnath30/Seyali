@@ -14,8 +14,11 @@ body {
 
 
 .canvas-container {
-    cursor: crosshair;
-   
+  height: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: gray;
   }
   
   #myCanvas {
